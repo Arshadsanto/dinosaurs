@@ -103,24 +103,26 @@ class Human{
     }
 }
 // Getting Human Data DOM
-const humanInputData = document.querySelector('#dino-compare');
-var human = { "species" : "Human","fact":"You are Human"};
-function humanData() {
-    human.name = humanInputData.name.value;
-    human.height = parseInt(prompt(humanInputData.feet.value)) * 12 + parseInt(prompt(humanInputData.inches.value));
-    human.weight = parseInt(prompt(humanInputData.weight.nodeValue));
-    human.diet = humanInputData.diet.value.toLowerCase();
-    removeForm = humanInputData.style.display ="none";
-
-    //  adding human to Grid
-   function addItem(){
-    dinos.splice(4, 0, human);
-}
-    addItem();
-}
-
-const button = document.querySelector("#btn");
-button.addEventListener("click", humanData, false);
+    const humanInputData = document.querySelector('#dino-compare');
+    const hHeight = document.getElementById('feet').value + document.getElementById('inches').value;
+    const hWeight = document.getElementById('weight').value;
+    const human = { "species" : "Human","fact":"You are Human"};
+    function humanData() {
+        human.name = document.getElementById('name').value;
+        human.height = parseInt(prompt(hHeight.feet)) * 12 + parseInt(prompt(hHeight.inches));
+        human.weight = parseInt(prompt(hWeight.weight));
+        human.diet = document.getElementById('diet').value;
+        removeForm = humanInputData.style.display ="none";
+    return human;
+        //  adding human to Grid
+       function addItem(){
+        dinos.splice(4, 0, human);
+    }
+        addItem();
+    }
+    
+    const button = document.querySelector("#btn");
+    button.addEventListener("click", humanData, false);
 // Create Dino Compare Method 1
 // NOTE: Weight in JSON file is in lbs, height in inches.
 function comparison1(){
@@ -136,7 +138,7 @@ function comparison1(){
             else {
                 arr.result = `You are not taller than this dino! This dino is  ${(arr.height)} inches tall.`;
             }
-
+             return arr.height;
         }
     })
 }
