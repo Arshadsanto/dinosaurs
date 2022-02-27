@@ -1,4 +1,3 @@
-
 // taking data from json file
 
 var dinos = [
@@ -88,35 +87,32 @@ constructor(species,weight,height,diet,where,when,fact,image) {
     this.image = image;
 }
 }
-// Create Human class
-class Human{
-    constructor(species,weight,height,diet,where,when,fact,image) {
-    this.specis = Human.species;//i have to edit---------------Arshad
-    this.weight = Human.weight;
-    this.image = `images/${species}.png`;
-    this.height = Human.height;
-    this.diet = Human.diet;
-    this.where = Human.where;
-    this.when = Human.when;
-    this.fact = Human.fact;
-    this.image =Human.image;
+// Create Human object
+function humanN(species,weight,height,diet) {
+    this.name = name;
+    this.weight = weight;
+    this.height = height;
+    this.diet = diet;
     }
-}
+    let human = new humanN();
+     human = { "species" : "Human","fact":"You are Human"};
+
 // Getting Human Data DOM
     const humanInputData = document.querySelector('#dino-compare');
-    const hHeight = document.getElementById('feet').value + document.getElementById('inches').value;
-    const hWeight = document.getElementById('weight').value;
-    const human = { "species" : "Human","fact":"You are Human"};
+    const hHeight = parseInt(prompt(document.querySelector('#feet').value)) * 12 + parseInt(prompt(document.querySelector('#inches').value));
+    const hWeight = parseInt(prompt(document.querySelector('#weight').Value));
+    const hDiet = document.querySelector('#diet').value;
+   
     function humanData() {
-        human.name = document.getElementById('name').value;
-        human.height = parseInt(prompt(hHeight.feet)) * 12 + parseInt(prompt(hHeight.inches));
-        human.weight = parseInt(prompt(hWeight.weight));
-        human.diet = document.getElementById('diet').value;
+        human.name = humanInputData.name.value;
+        human.height = hHeight;
+        human.weight = hWeight;
+        human.diet = hDiet;
         removeForm = humanInputData.style.display ="none";
-    return human;
+
         //  adding human to Grid
        function addItem(){
-        dinos.splice(4, 0, human);
+        dinos.splice(5, 0, human);
     }
         addItem();
     }
@@ -138,7 +134,6 @@ function comparison1(){
             else {
                 arr.result = `You are not taller than this dino! This dino is  ${(arr.height)} inches tall.`;
             }
-             return arr.height;
         }
     })
 }
@@ -159,7 +154,6 @@ function comparison2(){
             else {
                 arr.result = `You are heavier than this dino! This dino is only  ${(arr.weight)}   lbs heavy.`;
             }
-            return arr.weight;
         }
     
     })
@@ -180,7 +174,6 @@ function comparison3(){
             else {
                 arr.result = `You eat more than this dino! This dino is ${(arr.diet)}inches tall.`;
             }
-            return arr.diet;
         }
     })
 }
@@ -215,12 +208,28 @@ div.appendChild(text);
 
 })
 function humanName(){
-    var name = grid.children[4].firstChild;
+    var name = grid.children[5].firstChild;
     if( name.innerHTML = human.name){
      return true;
     }
 }
 humanName();
+// Remove human Fact
+    function humanFactRemoval(){
+    let hfact = grid.children[5].lastChild;
+    if (hfact.parentNode) {
+      hfact.parentNode.removeChild(hfact);
+    }
+}
+humanFactRemoval();
+// Remove Pigeon Fact
+function pigeonFactRemoval(){
+    let pfact = grid.children[8].lastChild;
+    if (pfact.innerHTML = dinos[8].fact) {
+        return true;
+    }
+}
+pigeonFactRemoval();
 
 }
 button.addEventListener("click", createGrid, false);
